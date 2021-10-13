@@ -22,6 +22,13 @@ cards_colors = {
     "Hearts": "Coeur"
 }
 
+cards_powers = {
+    "Pique": ["Coeur","Carreau"],
+    "Coeur": ["Carreau","Trèfle"],
+    "Carreau": ["Trèfle"],
+    "Trèfle": ["Pique"]
+}
+
 # Start Game
 player1_wins_count = 0
 player2_wins_count = 0
@@ -53,9 +60,7 @@ while len(player1_cards) > 0 and len(player2_cards) > 0:
         nb_winner = 1
     elif player1_card_value == player2_card_value:
         print("BATTLE!!")
-        # I thought about using an "elif" here but it would have made my "nb_winner = 1" redundant so I decided to use this 
-        # super long if condition 
-        if (cards_colors[player1_card_color] == "Pique" and cards_colors[player2_card_color] in ["Coeur", "Carreau"]) or (cards_colors[player1_card_color] == "Coeur" and cards_colors[player2_card_color] in ["Carreau", "Trèfle"]) or (cards_colors[player1_card_color] == "Carreau" and cards_colors[player2_card_color] == "Trèfle") or (cards_colors[player1_card_color] == "Trèfle" and cards_colors[player2_card_color] == "Pique"):
+        if (cards_colors[player2_card_color] in cards_powers[cards_colors[player1_card_color]]):
             nb_winner = 1
         else:
             nb_winner = 2
